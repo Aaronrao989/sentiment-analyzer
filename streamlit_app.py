@@ -76,7 +76,7 @@ stemmer, stop_words = load_nltk_data()
 
 # Load model function
 @st.cache_resource
-def load_model(model_path='/Users/aaronrao/Desktop/projects/sentiment-analyzer/sentiment_model.pkl'):
+def load_model(model_path='sentiment_model.pkl'):
     """Load the trained sentiment analysis model"""
     try:
         with open(model_path, 'rb') as f:
@@ -88,6 +88,7 @@ def load_model(model_path='/Users/aaronrao/Desktop/projects/sentiment-analyzer/s
     except Exception as e:
         st.error(f"❌ Error loading model: {e}")
         return None
+
 
 # Text preprocessing function
 def preprocess_text(text):
