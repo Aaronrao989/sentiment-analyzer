@@ -76,7 +76,7 @@ stemmer, stop_words = load_nltk_data()
 
 # Load model function
 @st.cache_resource
-def load_model(model_path='models/naive_bayes_model.pkl'):
+def load_model(model_path='/Users/aaronrao/Desktop/projects/sentiment-analyzer/sentiment_model.pkl'):
     """Load the trained sentiment analysis model"""
     try:
         with open(model_path, 'rb') as f:
