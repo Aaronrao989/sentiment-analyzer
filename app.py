@@ -183,8 +183,10 @@ model, vectorizer = load_model()
 # ----------------------------
 # NLTK setup
 # ----------------------------
-nltk.download("punkt", quiet=True)
-nltk.download("stopwords", quiet=True)
+# NLTK setup (SAFE for Streamlit Cloud)
+from nltk.stem import SnowballStemmer
+from nltk.corpus import stopwords
+
 stemmer = SnowballStemmer("english")
 stop_words = set(stopwords.words("english"))
 
@@ -195,12 +197,15 @@ def preprocess_text(text):
     text = text.lower()
     text = re.sub(r"\d+", "", text)
     text = text.translate(str.maketrans("", "", string.punctuation))
-    tokens = word_tokenize(text)
+
+    tokens = text.split()  # 🔥 NO nltk tokenizer
+
     tokens = [
         stemmer.stem(word)
         for word in tokens
         if word not in stop_words and len(word) > 2
     ]
+
     return " ".join(tokens)
 
 # ----------------------------
